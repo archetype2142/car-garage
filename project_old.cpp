@@ -1,10 +1,9 @@
 #include <fstream>
 #include <stdio.h>
 #include <string.h>
-#include <iostream>
+#include <iostream.h>
+#include <conio.h>
 #include <stdlib.h>
-
-using namespace std;
 
 class car { 
 	
@@ -12,7 +11,7 @@ public:
 	char name[20]; 
 	char manufacturer[20];
 	int car_index;
-	int price; 
+	unsigned long long int price; 
 	void get() {
 		cout << "Enter the details of the car below "<< endl;
 		cout << "Enter name of the car: ";
@@ -52,6 +51,8 @@ public:
 	}
 };
 int main(){
+	
+	clrscr();
 	int choice;
 	int choice_1;  
 	cout << "***************************WELCOME TO CAR GARAGE********************\n\n\n" << "                  Are you the manager(1) or customer(2): ";
@@ -150,5 +151,7 @@ int main(){
 			}
 		}
 	}while(choice != 3);
+	
+	getch();
 	return 0;
 }
