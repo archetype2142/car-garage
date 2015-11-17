@@ -58,20 +58,24 @@ public:
 		cout << "*                      "<< name << " is now yours.\n";
 		cout << "*                                                                *\n";
 		cout << "******************************************************************\n\n\n";
+		exit(0);
 	}
 };
 int main(){
-	do{
-		clrscr();
-		int choice;
-		int choice_1;  
+	clrscr();
+
+	int choice;
+	int choice_1;
+	do{  
 		cout << "***************************WELCOME TO CAR GARAGE********************\n\n\n" << "                  Are you the manager(1) or customer(2): ";
 		cin >> choice_1;
 		cout << endl;
 		if(choice_1 == 1){
 			cout << "1. Add a new car" << endl;
 			cout << "2. Display all cars" << endl;
-			cout << "3. exit" << endl;
+			cout << "3. Remove old car" << endl;
+			cout << "4. Update outdated car" << endl;
+			cout << "5. exit" << endl;
 			cout << "Enter choice: ";
 			cin >> choice;
 
@@ -108,8 +112,67 @@ int main(){
 				} 
 				break;
 
-				case 3:
-				exit(0);
+				case 3:{ 
+					ofstream o;
+					char a[20]; 
+					car s; 
+					ifstream t; 
+					o.open("new.dat", ios::out|ios::binary);
+					t.open("cars.dat",ios::binary|ios::app|ios::in); 
+					t.seekg(0); 
+					cout <<"Enter the name of car you want to remove: ";
+					cin >> a;
+					while(t.read((char*)&s,sizeof(car))){
+						if(strcmp(a, s.getn()) != 0){
+							o.write((char*)&s, sizeof(s));
+						}
+					}
+					o.close();
+					t.close();
+					remove("cars.dat");
+					rename("new.dat", "cars.dat");
+				}
+				break;
+				cout << "\n Car successfully deleted \n";
+
+				case 4: {
+					char n[100];
+					cout<<"Enter Name that should be modified: ";
+					cin >> n;
+					long pos;
+					char found = 'f';
+					fstream t;
+					car s;
+					t.open("cars.dat",ios::in| ios::out|ios::binary);
+					while(!t.eof())
+					{
+						pos = t.tellg();
+						t.read((char*)&s, sizeof(s));
+						if(strcmp(n, s.getn()) == 0){
+							cout << "Enter new details below\n";
+							s.get();
+							t.seekg(pos);
+							t.write((char*)&s, sizeof(s));
+							found = 't';
+							t.seekg(0);
+					cout << "\n        Garage successfully modified, new files are...\n";
+					cout << "****************************CAR*DETAILS***************************\n";
+					cout << "*                                                                *\n";
+					cout << "*                                                                *\n";
+					while(t.read((char*)&s,sizeof(car))){ 
+						s.show(); 
+					}
+					cout << "*                                                                *\n";
+					cout << "*                                                                *\n";
+					cout << "******************************************************************\n";
+							break;
+						}
+					}
+					if(found == 'f'){
+						cout << "\nRecord not found\n";
+					}
+					t.close();
+				}
 			}
 		}
 		else{
@@ -160,7 +223,6 @@ int main(){
 			}
 		}
 	}while(choice != 3);
-	
-	getch();
 	return 0;
+	getch();
 }
