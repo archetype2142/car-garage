@@ -109,9 +109,9 @@ int main(){
 					cout << "*                                                                *\n";
 					cout << "******************************************************************\n";
 					t.close(); 
-				} 
-				break;
-
+					
+					break;
+				}
 				case 3:{ 
 					ofstream o;
 					char a[20]; 
@@ -131,9 +131,9 @@ int main(){
 					t.close();
 					remove("cars.dat");
 					rename("new.dat", "cars.dat");
+					cout << "\n Car successfully deleted \n";
+					break;
 				}
-				break;
-				cout << "\n Car successfully deleted \n";
 
 				case 4: {
 					char n[100];
@@ -155,16 +155,16 @@ int main(){
 							t.write((char*)&s, sizeof(s));
 							found = 't';
 							t.seekg(0);
-					cout << "\n        Garage successfully modified, new files are...\n";
-					cout << "****************************CAR*DETAILS***************************\n";
-					cout << "*                                                                *\n";
-					cout << "*                                                                *\n";
-					while(t.read((char*)&s,sizeof(car))){ 
-						s.show(); 
-					}
-					cout << "*                                                                *\n";
-					cout << "*                                                                *\n";
-					cout << "******************************************************************\n";
+							cout << "\n        Garage successfully modified, new files are...\n";
+							cout << "****************************CAR*DETAILS***************************\n";
+							cout << "*                                                                *\n";
+							cout << "*                                                                *\n";
+							while(t.read((char*)&s,sizeof(car))){ 
+								s.show(); 
+							}
+							cout << "*                                                                *\n";
+							cout << "*                                                                *\n";
+							cout << "******************************************************************\n";
 							break;
 						}
 					}
