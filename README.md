@@ -13,5 +13,5 @@ enter name of car
 press enter
 ```
 
-Following above steps will print a final invoice of the car, its details and price.
+Following above steps will print a final invoice of the car, including its details and price.
 
