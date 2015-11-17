@@ -12,6 +12,8 @@ public:
 	char name[20]; 
 	char manufacturer[20];
 	int car_index;
+	char color[20];
+	int seats;
 	int price; 
 	void get() {
 		cout << "Enter the details of the car below "<< endl;
@@ -21,6 +23,10 @@ public:
 		cin >> manufacturer;
 		cout << "Enter price: ";
 		cin >> price;
+		cout << "Enter color: ";
+		cin >> color;
+		cout << "How many seats? ";
+		cin >> seats;
 	} 
 	char *getn()
 	{
@@ -30,6 +36,8 @@ public:
 		cout << "* CAR NAME: " << name << endl;
 		cout << "* MANUFACTURER: " << manufacturer << endl;
 		cout << "* PRICE: " << price << endl;
+		cout << "* COLOR: " << color << endl;
+		cout << "* SEATS: " << seats << endl;
 		cout << "*                                                                *\n";
 	}
 
@@ -41,9 +49,13 @@ public:
 		cout << "*                                                                *\n";
 		cout << "* CAR NAME: " << name << endl;
 		cout << "*                                                                *\n";
-		cout << "* MANUFACTURER: " << manufacturer << endl;
+		cout << "* MANUFACTURER: " << manufacturer << endl;                          
 		cout << "*                                                                *\n";
-		cout << "* PRICE: " << price << endl;
+		cout << "* COLOR: " << color << endl;                                     
+		cout << "*                                                                *\n";
+		cout << "* PRICE: " << price << endl;                                      
+		cout << "*                                                                *\n";
+		cout << "* SEATS: " << seats << endl;										
 		cout << "*                                                                *\n";
 		cout << "*                      "<< name << " is now yours.\n";
 		cout << "*                                                                *\n";
