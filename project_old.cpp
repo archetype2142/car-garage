@@ -61,14 +61,13 @@ public:
 	}
 };
 int main(){
-	
-	clrscr();
-	int choice;
-	int choice_1;  
-	cout << "***************************WELCOME TO CAR GARAGE********************\n\n\n" << "                  Are you the manager(1) or customer(2): ";
-	cin >> choice_1;
-	cout << endl;
 	do{
+		clrscr();
+		int choice;
+		int choice_1;  
+		cout << "***************************WELCOME TO CAR GARAGE********************\n\n\n" << "                  Are you the manager(1) or customer(2): ";
+		cin >> choice_1;
+		cout << endl;
 		if(choice_1 == 1){
 			cout << "1. Add a new car" << endl;
 			cout << "2. Display all cars" << endl;
