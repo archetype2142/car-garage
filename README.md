@@ -15,3 +15,6 @@ press enter
 
 Following above steps will print a final invoice of the car, including its details and price.
 
+####Update
+Added precompiled executable files
+
