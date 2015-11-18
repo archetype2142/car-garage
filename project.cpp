@@ -221,11 +221,12 @@ int main(){
 				}
 				break;
 
-				case 3:
-				exit(0);
+				case 3:{
+					exit(0);
+				}
+				cout << "Do you want you continue?(y/n): ";
+				cin >> exitr;
 			}
-			cout << "Do you want you continue?(y/n): ";
-			cin >> exitr;
 		}
 	}while(exitr == 'y');
 	return 0;

@@ -63,7 +63,7 @@ public:
 };
 int main(){
 	clrscr();
-
+	char exitr = 'y';
 	int choice;
 	int choice_1;
 	do{  
@@ -174,6 +174,8 @@ int main(){
 					t.close();
 				}
 			}
+			cout << "Do you want you continue?(y/n): ";
+			cin >> exitr;
 		}
 		else{
 			cout << "1. Display all cars" << endl;
@@ -216,13 +218,17 @@ int main(){
 					}
 					t.close();
 					break;
+					getch();
 				}
 
-				case 3:
-				exit(0);
+				case 3:{
+					exit(0);
+				}
+				cout << "Do you want you continue?(y/n): ";
+				cin >> exitr;
 			}
 		}
-	}while(choice != 3);
+	}while(exitr == 'y');
 	return 0;
 	getch();
 }
