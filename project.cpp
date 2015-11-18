@@ -65,6 +65,7 @@ public:
 };
 int main(){
 	int choice;
+	char exitr = 'y';
 	int choice_1;
 	do{  
 		cout << "***************************WELCOME TO CAR GARAGE********************\n\n\n" << "                  Are you the manager(1) or customer(2): ";
@@ -173,7 +174,10 @@ int main(){
 					t.close();
 				}
 			}
+			cout << "Do you want you continue?(y/n): ";
+			cin >> exitr;
 		}
+		
 		else{
 			cout << "1. Display all cars" << endl;
 			cout << "2. Buy car!" << endl;
@@ -214,13 +218,15 @@ int main(){
 						}
 					}
 					t.close();
-					break;
 				}
+				break;
 
 				case 3:
 				exit(0);
 			}
+			cout << "Do you want you continue?(y/n): ";
+			cin >> exitr;
 		}
-	}while(choice != 3);
+	}while(exitr == 'y');
 	return 0;
 }
