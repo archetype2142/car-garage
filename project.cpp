@@ -14,7 +14,8 @@ public:
 	int car_index;
 	char color[20];
 	int seats;
-	int price; 
+	int price;
+	int c_code; 
 	void get() {
 		cout << "Enter the details of the car below "<< endl;
 		cout << "Enter name of the car: ";
@@ -27,6 +28,8 @@ public:
 		cin >> color;
 		cout << "How many seats? ";
 		cin >> seats;
+		cout << "Enter car code: ";
+		cin >> c_code;
 	} 
 	char *getn()
 	{
@@ -76,7 +79,8 @@ int main(){
 			cout << "2. Display all cars" << endl;
 			cout << "3. Remove old car" << endl;
 			cout << "4. Update outdated car" << endl;
-			cout << "5. exit" << endl;
+			cout << "5. Show sold cars" << endl;
+			cout << "6. exit" << endl;
 			cout << "Enter choice: ";
 			cin >> choice;
 
@@ -140,16 +144,16 @@ int main(){
 					cout<<"Enter Name that should be modified: ";
 					cin >> n;
 					long pos;
-					char found = 'f';
+		 			char found = 'f';
 					fstream t;
 					car s;
-					t.open("cars.dat",ios::in| ios::out|ios::binary);
+		 			t.open("cars.dat",ios::in| ios::out|ios::binary);
 					while(!t.eof())
-					{
+		 			{
 						pos = t.tellg();
-						t.read((char*)&s, sizeof(s));
-						if(strcmp(n, s.getn()) == 0){
-							cout << "Enter new details below\n";
+		 				t.read((char*)&s, sizeof(s));
+		 				if(strcmp(n, s.getn()) == 0){
+		 					cout << "Enter new details below\n";
 							s.get();
 							t.seekg(pos);
 							t.write((char*)&s, sizeof(s));
@@ -173,12 +177,29 @@ int main(){
 					}
 					t.close();
 				}
+				case 5: {
+					car s; 
+					fstream t; 
+					t.open("sold.dat",ios::binary|ios::out|ios::app|ios::in); 
+					t.seekg(0); 
+					cout << "****************************CAR*DETAILS***************************\n";
+					cout << "*                                                                *\n";
+					cout << "*                                                                *\n";
+					while(t.read((char*)&s,sizeof(car))){ 
+						s.show(); 
+					}
+					cout << "*                                                                *\n";
+					cout << "*                                                                *\n";
+					cout << "******************************************************************\n";
+					t.close(); 
+					break;
+				}
 			}
 			cout << "Do you want you continue?(y/n): ";
 			cin >> exitr;
 		}
 		
-		else{
+		else if(choice_1 == 2){
 			cout << "1. Display all cars" << endl;
 			cout << "2. Buy car!" << endl;
 			cout << "3. exit" << endl;
@@ -208,15 +229,19 @@ int main(){
 					char a[20]; 
 					car s; 
 					fstream t; 
+					fstream u;
+					u.open("sold.dat",ios::binary|ios::out|ios::app|ios::in); 
 					t.open("cars.dat",ios::binary|ios::out|ios::app|ios::in); 
 					t.seekg(0); 
 					cout <<"Enter the name of car you want to buy: ";
 					cin >> a;
 					while(t.read((char*)&s,sizeof(car))){
 						if(strcmp(a, s.getn()) == 0){
-							s.bought(); 
+							s.bought();
+		                    u.write((char*)&s,sizeof(car)); 
 						}
 					}
+					u.close();
 					t.close();
 				}
 				break;
@@ -227,6 +252,9 @@ int main(){
 				cout << "Do you want you continue?(y/n): ";
 				cin >> exitr;
 			}
+		}
+		else{
+			cout << "                       WRONG CHOICE, PLEASE RETRY.\n\n";
 		}
 	}while(exitr == 'y');
 	return 0;
